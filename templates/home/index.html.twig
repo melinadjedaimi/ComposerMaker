@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue chez Bijoux Elegants{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="jumbotron text-center bg-light p-5 rounded">
+        <h1 class="display-4">Bijoux Élégants</h1>
+        <p class="lead">Découvrez notre collection exclusive de bijoux fins et élégants.</p>
+        <hr class="my-4">
+        <p>Explorez nos catégories et trouvez le bijou parfait pour chaque occasion.</p>
+    </div>
+
+    <h2 class="mt-5">Nos Catégories</h2>
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ category.name }}</h5>
+                    <p class="card-text">{{ category.text|slice(0, 100) }}...</p>
+                    <a href="{{ path('app_category_show', {'id': category.id}) }}" class="btn btn-primary">Voir les produits</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="mt-5">Produits Phares</h2>
+    <div class="row">
+        {% for product in products|slice(0, 6) %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text"><strong>{{ product.price }} €</strong></p>
+                    <p class="card-text">Matériau: {{ product.material }}</p>
+                    <p class="card-text">Stock: {{ product.stock }}</p>
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-success">Voir détails</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
