@@ -40,4 +40,85 @@ class ProductRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+     * @return Product[] Returns an array of Product objects filtered by category
+     */
+    public function findByCategory($category): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.category = :category')
+            ->setParameter('category', $category)
+            ->orderBy('p.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Product[] Returns an array of Product objects filtered by price range
+     */
+    public function findByPriceRange($minPrice, $maxPrice): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.price >= :minPrice')
+            ->andWhere('p.price <= :maxPrice')
+            ->setParameter('minPrice', $minPrice)
+            ->setParameter('maxPrice', $maxPrice)
+            ->orderBy('p.price', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Product[] Returns an array of Product objects filtered by material
+     */
+    public function findByMaterial($material): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.material = :material')
+            ->setParameter('material', $material)
+            ->orderBy('p.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Product[] Returns an array of Product objects with stock available
+     */
+    public function findInStock(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.stock > 0')
+            ->orderBy('p.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Product[] Returns an array of Product objects sorted by price ascending
+     */
+    public function findAllOrderedByPriceAsc(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.price', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Product[] Returns an array of Product objects sorted by price descending
+     */
+    public function findAllOrderedByPriceDesc(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.price', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
