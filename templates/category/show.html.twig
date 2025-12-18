@@ -19,6 +19,7 @@
                     <p class="card-text">Matériau: {{ product.material }}</p>
                     <p class="card-text">Stock: {{ product.stock }}</p>
                     <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-primary">Voir détails</a>
+                    <a href="{{ path('app_cart_add', {'id': product.id}) }}" class="btn btn-success ms-2">Ajouter au panier</a>
                 </div>
             </div>
         </div>
