@@ -40,4 +40,18 @@ class CategoryRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+     * @return Category[] Returns an array of Category objects with their products loaded
+     */
+    public function findAllWithProducts(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.products', 'p')
+            ->addSelect('p')
+            ->orderBy('c.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

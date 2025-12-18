@@ -47,6 +47,8 @@ class ProductRepository extends ServiceEntityRepository
     public function findByCategory($category): array
     {
         return $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->addSelect('c')
             ->andWhere('p.category = :category')
             ->setParameter('category', $category)
             ->orderBy('p.name', 'ASC')
@@ -61,6 +63,8 @@ class ProductRepository extends ServiceEntityRepository
     public function findByPriceRange($minPrice, $maxPrice): array
     {
         return $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->addSelect('c')
             ->andWhere('p.price >= :minPrice')
             ->andWhere('p.price <= :maxPrice')
             ->setParameter('minPrice', $minPrice)
@@ -77,6 +81,8 @@ class ProductRepository extends ServiceEntityRepository
     public function findByMaterial($material): array
     {
         return $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->addSelect('c')
             ->andWhere('p.material = :material')
             ->setParameter('material', $material)
             ->orderBy('p.name', 'ASC')
@@ -91,6 +97,8 @@ class ProductRepository extends ServiceEntityRepository
     public function findInStock(): array
     {
         return $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->addSelect('c')
             ->andWhere('p.stock > 0')
             ->orderBy('p.name', 'ASC')
             ->getQuery()
@@ -104,6 +112,8 @@ class ProductRepository extends ServiceEntityRepository
     public function findAllOrderedByPriceAsc(): array
     {
         return $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->addSelect('c')
             ->orderBy('p.price', 'ASC')
             ->getQuery()
             ->getResult()
@@ -116,6 +126,8 @@ class ProductRepository extends ServiceEntityRepository
     public function findAllOrderedByPriceDesc(): array
     {
         return $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->addSelect('c')
             ->orderBy('p.price', 'DESC')
             ->getQuery()
             ->getResult()
