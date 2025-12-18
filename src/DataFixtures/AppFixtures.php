@@ -25,12 +25,12 @@ class AppFixtures extends Fixture
 
         // Créer des produits
         $products = [
-            ['Collier Diamant', 'Collier élégant avec diamants', 2500.00, 10, 'Or 18k', 0],
-            ['Boucles Perles', 'Boucles d\'oreilles en perles fines', 800.00, 15, 'Perles', 1],
-            ['Bracelet Or', 'Bracelet en or massif', 1200.00, 8, 'Or 18k', 2],
-            ['Bague Saphir', 'Bague avec saphir central', 1800.00, 5, 'Or blanc', 3],
-            ['Collier Perles', 'Collier de perles naturelles', 950.00, 12, 'Perles', 0],
-            ['Boucles Or', 'Boucles d\'oreilles en or', 600.00, 20, 'Or 18k', 1],
+            ['Collier Diamant', 'Collier élégant avec diamants', 2500.00, 10, 'Or 18k', 0, 'https://picsum.photos/400/300?random=1'],
+            ['Boucles Perles', 'Boucles d\'oreilles en perles fines', 800.00, 15, 'Perles', 1, 'https://picsum.photos/400/300?random=2'],
+            ['Bracelet Or', 'Bracelet en or massif', 1200.00, 8, 'Or 18k', 2, 'https://picsum.photos/400/300?random=3'],
+            ['Bague Saphir', 'Bague avec saphir central', 1800.00, 5, 'Or blanc', 3, 'https://picsum.photos/400/300?random=4'],
+            ['Collier Perles', 'Collier de perles naturelles', 950.00, 12, 'Perles', 0, 'https://picsum.photos/400/300?random=5'],
+            ['Boucles Or', 'Boucles d\'oreilles en or', 600.00, 20, 'Or 18k', 1, 'https://picsum.photos/400/300?random=6'],
         ];
 
         foreach ($products as $prod) {
@@ -41,6 +41,7 @@ class AppFixtures extends Fixture
             $product->setStock($prod[3]);
             $product->setMaterial($prod[4]);
             $product->setCategory($categories[$prod[5]]);
+            $product->setImage($prod[6]);
             $manager->persist($product);
         }
 
