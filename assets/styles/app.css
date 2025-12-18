@@ -1,137 +1,306 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap');
 
+/* GENERAL LAYOUT – minimal, inspiré Chanel */
 body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
-    color: #333;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #f8f8f8;
+    color: #111111;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    color: #d4af37; /* Gold color */
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+    color: #111111;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
+/* HERO / JUMBOTRON */
 .jumbotron {
-    background: linear-gradient(135deg, #d4af37 0%, #f4e87c 100%);
-    color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    color: #111111;
+    padding: 4.5rem 3rem;
+    text-align: center;
+    border-radius: 0;
+    border: 1px solid #e5e5e5;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
+.jumbotron .display-4 {
+    font-size: 2.4rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.jumbotron p.lead {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+}
+
+.jumbotron hr {
+    width: 60px;
+    margin: 2rem auto;
+    border-top: 1px solid #111111;
+}
+
+/* CARDS – sobres, très peu d’ombre */
 .card {
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 0;
+    box-shadow: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    background: #ffffff;
     overflow: hidden;
+    margin-bottom: 24px;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    border-color: #d0d0d0;
+}
+
+.card-body {
+    padding: 1.8rem;
 }
 
 .card-title {
-    color: #d4af37;
-    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #444444;
 }
 
 .card-text strong {
-    color: #b8860b;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #d4af37 0%, #f4e87c 100%);
-    border: none;
-    border-radius: 25px;
-    padding: 10px 20px;
+    color: #111111;
     font-weight: 500;
-    transition: background 0.3s ease;
 }
 
-.btn-primary:hover {
-    background: linear-gradient(135deg, #b8860b 0%, #d4af37 100%);
-    color: white;
+/* BOUTONS – noirs et minimalistes */
+.btn {
+    border-radius: 0;
+    padding: 9px 22px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-width: 1px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+.btn-primary,
+.btn-success {
+    background-color: #111111;
+    border-color: #111111;
+    color: #ffffff;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    background-color: #ffffff;
+    color: #111111;
+    border-color: #111111;
 }
 
 .btn-secondary {
-    background: #333;
-    border: none;
-    border-radius: 25px;
-    padding: 10px 20px;
-    color: white;
-    transition: background 0.3s ease;
+    background-color: #ffffff;
+    border-color: #111111;
+    color: #111111;
 }
 
 .btn-secondary:hover {
-    background: #555;
+    background-color: #111111;
+    border-color: #111111;
+    color: #ffffff;
 }
 
-.btn-success {
-    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+.btn-danger {
+    background-color: #b00020;
+    border-color: #b00020;
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background-color: #ffffff;
+    color: #b00020;
+    border-color: #b00020;
+}
+
+.btn-submit {
+    background-color: #111111;
+    border: 1px solid #111111;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 12px 32px;
+    border-radius: 0;
+}
+
+.btn-submit:hover {
+    background-color: #ffffff;
+    color: #111111;
+}
+
+/* NAVBAR – blanc, très clean */
+.navbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e5e5e5;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+    font-weight: 600;
+    color: #111111 !important;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+}
+
+.navbar-nav .nav-link {
+    color: #222222 !important;
+    font-weight: 400;
+    margin: 0 12px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    color: #000000 !important;
+}
+
+.navbar-toggler {
     border: none;
-    border-radius: 25px;
-    padding: 10px 20px;
-    transition: background 0.3s ease;
 }
 
-.btn-success:hover {
-    background: linear-gradient(135deg, #218838 0%, #17a2b8 100%);
+.navbar-toggler-icon {
+    filter: invert(0);
 }
 
-/* Custom styles for product cards */
+/* FORMS */
+.form-control {
+    border: 1px solid #cccccc;
+    border-radius: 0;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    border-color: #111111;
+    box-shadow: none;
+}
+
+/* PRODUCT CARDS */
 .product-card {
     position: relative;
 }
 
 .product-card .card-body {
-    padding: 20px;
+    padding: 1.6rem 1.8rem;
 }
 
-.product-card .card-title {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
+.product-card .card-img-top {
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid #e5e5e5;
 }
 
-.product-card .card-text {
-    margin-bottom: 8px;
-}
-
-/* Navbar if added later */
-.navbar {
-    background: linear-gradient(135deg, #333 0%, #555 100%);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-brand {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    color: #d4af37 !important;
-}
-
-/* Footer if added */
+/* FOOTER – simple, noir/blanc */
 footer {
-    background: #333;
-    color: white;
-    padding: 20px 0;
+    background-color: #ffffff;
+    color: #777777;
+    padding: 24px 0;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 60px;
+    border-top: 1px solid #e5e5e5;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
-/* Responsive adjustments */
+footer a {
+    color: #111111;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #000000;
+}
+
+/* Wishlist and Cart icons */
+.wishlist-icon,
+.cart-icon {
+    position: relative;
+}
+
+.wishlist-count,
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #111111;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    min-width: 18px;
+    text-align: center;
+}
+
+/* TITRES DE SECTION */
+.section-title {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: #111111;
+    margin-top: 0.8rem;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .card {
-        margin-bottom: 20px;
+    .jumbotron {
+        padding: 3rem 1.5rem;
+        margin-top: 2rem;
     }
 
-    .jumbotron h1 {
-        font-size: 2rem;
+    .jumbotron .display-4 {
+        font-size: 1.8rem;
+        letter-spacing: 0.12em;
+    }
+
+    .navbar-nav {
+        text-align: center;
+        padding-top: 1rem;
+    }
+
+    .card {
+        margin-bottom: 20px;
     }
 }

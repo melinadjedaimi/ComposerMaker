@@ -4,14 +4,44 @@
 
 {% block body %}
 <div class="container mt-5">
-    <div class="jumbotron text-center bg-light p-5 rounded">
+    <div class="jumbotron">
         <h1 class="display-4">Bijoux Élégants</h1>
-        <p class="lead">Découvrez notre collection exclusive de bijoux fins et élégants.</p>
+        <p class="lead">Une sélection raffinée de pièces intemporelles, inspirées des maisons de haute joaillerie.</p>
         <hr class="my-4">
-        <p>Explorez nos catégories et trouvez le bijou parfait pour chaque occasion.</p>
+        <p>Parcourez nos catégories et découvrez le bijou qui sublimera chaque instant.</p>
     </div>
 
-    <h2 class="mt-5">Nos Catégories</h2>
+    <div class="row mb-5">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 text-center">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title">Découvrir la collection</h5>
+                    <p class="card-text">Accédez à toutes nos créations et explorez les différentes lignes de bijoux.</p>
+                    <a href="{{ path('app_product_index') }}" class="btn btn-primary mt-2">Voir tous les bijoux</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 text-center">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title">Créer un compte</h5>
+                    <p class="card-text">Enregistrez vos coups de cœur, suivez vos commandes et gérez votre wishlist.</p>
+                    <a href="{{ path('app_register') }}" class="btn btn-secondary mt-2">Inscription</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 text-center">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title">Votre panier</h5>
+                    <p class="card-text">Retrouvez les pièces que vous avez sélectionnées avant de finaliser votre commande.</p>
+                    <a href="{{ path('app_cart') }}" class="btn btn-secondary mt-2">Voir le panier</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">Nos catégories</h2>
     <div class="row">
         {% for category in categories %}
         <div class="col-md-4 mb-4">
@@ -26,7 +56,7 @@
         {% endfor %}
     </div>
 
-    <h2 class="mt-5">Produits Phares</h2>
+    <h2 class="section-title">Produits phares</h2>
     <div class="row">
         {% for product in products|slice(0, 6) %}
         <div class="col-md-4 mb-4">

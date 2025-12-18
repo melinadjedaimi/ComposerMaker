@@ -14,31 +14,91 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{ path('app_home') }}">Bijoux Élégants</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_category_index') }}">Catégories</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="collectionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Collections
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="collectionsDropdown">
+                                <li><h6 class="dropdown-header">Nos catégories</h6></li>
+                                <li><a class="dropdown-item" href="{{ path('app_category_index') }}">Toutes les catégories</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_category_show', {'id': 1}) }}">Colliers</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_category_show', {'id': 2}) }}">Boucles d'oreilles</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_category_show', {'id': 3}) }}">Bracelets</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_category_show', {'id': 4}) }}">Bagues</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><h6 class="dropdown-header">Produits phares</h6></li>
+                                <li><a class="dropdown-item" href="{{ path('app_product_index') }}">Tous les produits</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_product_show', {'id': 1}) }}">Collier Diamant</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_product_show', {'id': 2}) }}">Boucles Perles</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_product_show', {'id': 3}) }}">Bracelet Or</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_product_show', {'id': 4}) }}">Bague Saphir</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_product_index') }}">Produits</a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        {% if app.user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_wishlist') }}">
+                                    Wishlist
+                                    {% if app.user.wishlists is defined and app.user.wishlists|length > 0 %}
+                                        <span class="badge bg-secondary">{{ app.user.wishlists|length }}</span>
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_cart') }}">Panier</a>
+                            <a class="nav-link" href="{{ path('app_cart') }}">
+                                Panier
+                                {% if app.session.get('cart') is defined and app.session.get('cart')|length > 0 %}
+                                    <span class="badge bg-secondary">{{ app.session.get('cart')|length }}</span>
+                                {% endif %}
+                            </a>
                         </li>
+                        {% if app.user %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ app.user.email }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
-        {% block body %}{% endblock %}
+
+        <main class="site-main">
+            {% block body %}{% endblock %}
+        </main>
+
+        <footer>
+            <div class="container">
+                <span>Bijoux Élégants &mdash; Collection de bijoux raffinés</span>
+            </div>
+        </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

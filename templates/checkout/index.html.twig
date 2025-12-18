@@ -1,20 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CheckoutController!{% endblock %}
+{% block title %}Commande - Bijoux Élégants{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container mt-5">
+    <h1 class="section-title">Finalisation de votre commande</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/melin/OneDrive/Bureau/efrei/composerMaker/ComposerMaker/projet-bijoux/src/Controller/CheckoutController.php</code></li>
-        <li>Your template at <code>C:/Users/melin/OneDrive/Bureau/efrei/composerMaker/ComposerMaker/projet-bijoux/templates/checkout/index.html.twig</code></li>
-    </ul>
+    <div class="row">
+        <div class="col-md-7 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Informations de livraison</h5>
+                    <p class="card-text text-muted mb-3">
+                        Renseignez vos coordonnées pour que nous puissions préparer l’envoi de vos bijoux.
+                    </p>
+                    <!-- Vous pourrez plus tard remplacer ce bloc par un véritable formulaire -->
+                    <p class="card-text">
+                        Cette page est en cours de construction : elle accueillera le récapitulatif détaillé
+                        de votre commande et le formulaire de paiement.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Rappel</h5>
+                    <p class="card-text">
+                        Avant de valider votre commande, vérifiez bien le contenu de votre panier
+                        (taille, couleur, quantité).
+                    </p>
+                    <a href="{{ path('app_cart') }}" class="btn btn-secondary w-100 mb-2">Retour au panier</a>
+                    <button class="btn btn-success w-100" disabled>Procéder au paiement</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

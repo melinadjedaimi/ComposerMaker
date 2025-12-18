@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="container mt-5">
-    <h1>Mon Panier</h1>
+    <h1 class="section-title">Mon panier</h1>
 
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
@@ -13,45 +13,46 @@
     {% endfor %}
 
     {% if items is empty %}
-        <p class="text-center">Votre panier est vide.</p>
-        <div class="text-center">
-            <a href="{{ path('app_product_index') }}" class="btn btn-primary">Voir les produits</a>
+        <div class="text-center py-5">
+            <p class="lead mb-4">Votre panier est actuellement vide.</p>
+            <a href="{{ path('app_product_index') }}" class="btn btn-primary">Découvrir la collection</a>
         </div>
     {% else %}
         <div class="row">
             <div class="col-md-8">
                 {% for item in items %}
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <!-- Placeholder for product image -->
-                                <div class="text-center">
-                                    <p>Image</p>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <div class="text-center text-muted small">
+                                        Image produit
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 class="card-title">{{ item.product.name }}</h5>
-                                <p class="card-text">{{ item.product.description }}</p>
-                                <p class="card-text">Prix unitaire: {{ item.product.price }} €</p>
-                                <p class="card-text">Quantité: {{ item.quantity }}</p>
-                                <p class="card-text"><strong>Sous-total: {{ item.product.price * item.quantity }} €</strong></p>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="{{ path('app_cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">Retirer</a>
+                                <div class="col-md-6">
+                                    <h5 class="card-title">{{ item.product.name }}</h5>
+                                    <p class="card-text">{{ item.product.description }}</p>
+                                    <p class="card-text">Prix unitaire : {{ item.product.price }} €</p>
+                                    <p class="card-text">Quantité : {{ item.quantity }}</p>
+                                    <p class="card-text"><strong>Sous-total : {{ item.product.price * item.quantity }} €</strong></p>
+                                </div>
+                                <div class="col-md-3 text-md-end text-start">
+                                    <a href="{{ path('app_cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">Retirer</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Récapitulatif</h5>
-                        <p class="card-text">Total: <strong>{{ total }} €</strong></p>
-                        <a href="{{ path('app_cart_clear') }}" class="btn btn-warning">Vider le panier</a>
-                        <button class="btn btn-success mt-2">Commander</button>
+                        <p class="card-text mb-4">Total : <strong>{{ total }} €</strong></p>
+                        <div class="d-grid gap-2">
+                            <a href="{{ path('app_cart_clear') }}" class="btn btn-secondary">Vider le panier</a>
+                            <a href="{{ path('app_checkout') }}" class="btn btn-success">Passer à la commande</a>
+                        </div>
                     </div>
                 </div>
             </div>
