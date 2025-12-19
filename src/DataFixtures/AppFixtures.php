@@ -25,12 +25,12 @@ class AppFixtures extends Fixture
 
         // Créer des produits
         $products = [
-            ['Collier Diamant', 'Collier élégant avec diamants', 2500.00, 10, 'Or 18k', 0, 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=300&fit=crop'],
-            ['Boucles Perles', 'Boucles d\'oreilles en perles fines', 800.00, 15, 'Perles', 1, 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=300&fit=crop'],
-            ['Bracelet Or', 'Bracelet en or massif', 1200.00, 8, 'Or 18k', 2, 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=300&fit=crop'],
-            ['Bague Saphir', 'Bague avec saphir central', 1800.00, 5, 'Or blanc', 3, 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=300&fit=crop'],
-            ['Collier Perles', 'Collier de perles naturelles', 950.00, 12, 'Perles', 0, 'https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=400&h=300&fit=crop'],
-            ['Boucles Or', 'Boucles d\'oreilles en or', 600.00, 20, 'Or 18k', 1, 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=400&h=300&fit=crop'],
+            ['Collier Diamant', 'Collier élégant avec diamants', 2500.00, 10, 'Or 18k', 0, 'collier-diamant.jpg'],
+            ['Boucles Perles', 'Boucles d\'oreilles en perles fines', 800.00, 15, 'Perles', 1, 'boucles-perles.jpg'],
+            ['Bracelet Or', 'Bracelet en or massif', 1200.00, 8, 'Or 18k', 2, 'bracelet-or.jpg'],
+            ['Bague Saphir', 'Bague avec saphir central', 1800.00, 5, 'Or blanc', 3, 'bague-saphir.jpg'],
+            ['Collier Perles', 'Collier de perles naturelles', 950.00, 12, 'Perles', 0, 'collier-perles.jpg'],
+            ['Boucles Or', 'Boucles d\'oreilles en or', 600.00, 20, 'Or 18k', 1, 'boucles-or.jpg'],
         ];
 
         foreach ($products as $prod) {
