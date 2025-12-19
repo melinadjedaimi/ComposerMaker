@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gérer les Catégories - Melya Admin{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <h1>Catégories</h1>
+        </div>
+        <div class="col-lg-4 text-end">
+            <a href="{{ path('app_category_new') }}" class="btn btn-success">+ Ajouter une catégorie</a>
+        </div>
+    </div>
+
+    {% if app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% for message in app.flashes('success') %}
+                {{ message }}
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    {% if categories|length > 0 %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Nombre de produits</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ category.name }}</td>
+                            <td>
+                                <span class="badge bg-info">{{ category.products|length }}</span>
+                            </td>
+                            <td>
+                                <a href="{{ path('app_admin_category_edit', {'id': category.id}) }}" class="btn btn-sm btn-warning">Éditer</a>
+                                <form method="POST" action="{{ path('app_admin_category_delete', {'id': category.id}) }}" style="display: inline;" onsubmit="return confirm('Êtes-vous sûr ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+                                    <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info">Aucune catégorie trouvée.</div>
+    {% endif %}
+</div>
+{% endblock %}

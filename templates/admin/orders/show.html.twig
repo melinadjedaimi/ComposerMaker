@@ -1,0 +1,77 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Commande #{{ order.id }} - Melya Admin{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <h1>Commande #{{ order.id }}</h1>
+        </div>
+        <div class="col-lg-4 text-end">
+            <a href="{{ path('app_admin_orders') }}" class="btn btn-secondary">Retour</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Informations de la Commande</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Client:</dt>
+                        <dd class="col-sm-9">{{ order.user.email ?? 'Anonyme' }}</dd>
+
+                        <dt class="col-sm-3">Date:</dt>
+                        <dd class="col-sm-9">{{ order.createdAt|date('d/m/Y H:i') }}</dd>
+
+                        <dt class="col-sm-3">Statut:</dt>
+                        <dd class="col-sm-9">
+                            <span class="badge bg-warning">{{ order.status }}</span>
+                        </dd>
+
+                        <dt class="col-sm-3">Total:</dt>
+                        <dd class="col-sm-9"><strong>{{ order.total }}€</strong></dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h5>Articles</h5>
+                </div>
+                <div class="card-body">
+                    {% if order.items|length > 0 %}
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Produit</th>
+                                        <th>Quantité</th>
+                                        <th>Prix Unitaire</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.items %}
+                                        <tr>
+                                            <td>{{ item.product.name }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ item.price }}€</td>
+                                            <td>{{ item.quantity * item.price }}€</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-muted">Aucun article dans cette commande.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

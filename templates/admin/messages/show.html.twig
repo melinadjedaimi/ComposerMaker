@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Message - Melya Admin{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <h1>{{ message.subject }}</h1>
+        </div>
+        <div class="col-lg-4 text-end">
+            <a href="{{ path('app_admin_messages') }}" class="btn btn-secondary">Retour</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <strong>De:</strong> {{ message.name }} ({{ message.email }})
+                </div>
+                <div class="col-md-6 text-end">
+                    <strong>Date:</strong> {{ message.createdAt|date('d/m/Y H:i') }}
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ message.subject }}</h5>
+            <p class="card-text">{{ message.message|nl2br }}</p>
+        </div>
+        <div class="card-footer">
+            <form method="POST" action="{{ path('app_admin_message_delete', {'id': message.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce message ?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ message.id) }}">
+                <button type="submit" class="btn btn-danger">Supprimer le message</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

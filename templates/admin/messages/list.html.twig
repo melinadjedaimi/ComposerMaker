@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gérer les Messages - Melya Admin{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <h1 class="mb-4">Messages de Contact</h1>
+
+    {% if app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% for message in app.flashes('success') %}
+                {{ message }}
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    {% if messages|length > 0 %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Sujet</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for message in messages %}
+                        <tr>
+                            <td>{{ message.name }}</td>
+                            <td>{{ message.email }}</td>
+                            <td>{{ message.subject }}</td>
+                            <td>{{ message.createdAt|date('d/m/Y H:i') }}</td>
+                            <td>
+                                <a href="{{ path('app_admin_message_show', {'id': message.id}) }}" class="btn btn-sm btn-info">Voir</a>
+                                <form method="POST" action="{{ path('app_admin_message_delete', {'id': message.id}) }}" style="display: inline;" onsubmit="return confirm('Êtes-vous sûr ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ message.id) }}">
+                                    <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info">Aucun message trouvé.</div>
+    {% endif %}
+</div>
+{% endblock %}

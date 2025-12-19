@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ product.name }} - Melya Admin{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <h1>{{ product.name }}</h1>
+        </div>
+        <div class="col-lg-4 text-end">
+            <a href="{{ path('app_admin_product_edit', {'id': product.id}) }}" class="btn btn-warning">Éditer</a>
+            <a href="{{ path('app_admin_products') }}" class="btn btn-secondary">Retour</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            {% if product.image %}
+                <img src="{{ asset('uploads/' ~ product.image) }}" alt="{{ product.name }}" class="img-fluid rounded">
+            {% else %}
+                <div class="bg-light rounded p-5 text-center">
+                    <p class="text-muted">Aucune image</p>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Détails</h5>
+                    <dl class="row">
+                        <dt class="col-sm-3">Prix:</dt>
+                        <dd class="col-sm-9"><strong>{{ product.price }}€</strong></dd>
+
+                        <dt class="col-sm-3">Catégorie:</dt>
+                        <dd class="col-sm-9">{{ product.category.name ?? 'N/A' }}</dd>
+
+                        <dt class="col-sm-3">Stock:</dt>
+                        <dd class="col-sm-9">
+                            {% if product.stock > 0 %}
+                                <span class="badge bg-success">{{ product.stock }} en stock</span>
+                            {% else %}
+                                <span class="badge bg-danger">Rupture de stock</span>
+                            {% endif %}
+                        </dd>
+
+                        <dt class="col-sm-3">Matière:</dt>
+                        <dd class="col-sm-9">{{ product.material ?? 'N/A' }}</dd>
+                    </dl>
+
+                    <h6 class="mt-4">Description</h6>
+                    <p>{{ product.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

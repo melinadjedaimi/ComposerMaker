@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Éditer Produit - Melya Admin{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="mb-4">Éditer: {{ product.name }}</h1>
+
+            <div class="card">
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'class': 'product-form', 'novalidate': 'novalidate'}}) }}
+                        <div class="mb-3">
+                            {{ form_label(form.name) }}
+                            {{ form_widget(form.name) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.description) }}
+                            {{ form_widget(form.description) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.price) }}
+                            {{ form_widget(form.price) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.stock) }}
+                            {{ form_widget(form.stock) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.material) }}
+                            {{ form_widget(form.material) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.category) }}
+                            {{ form_widget(form.category) }}
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex">
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <a href="{{ path('app_admin_products') }}" class="btn btn-secondary">Annuler</a>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
