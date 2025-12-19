@@ -1,0 +1,85 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Mon Profil - Melya{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="mb-4">Mon Profil</h1>
+
+            {% if app.flashes('success') %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {% for message in app.flashes('success') %}
+                        {{ message }}
+                    {% endfor %}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Informations personnelles</h5>
+                    <div class="mb-3">
+                        <label class="form-label text-muted">Email</label>
+                        <p class="form-control-plaintext">{{ user.email }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted">Rôles</label>
+                        <p class="form-control-plaintext">
+                            {% for role in user.roles %}
+                                <span class="badge bg-info">{{ role }}</span>
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex">
+                <a href="{{ path('app_profile_edit') }}" class="btn btn-primary">Modifier mon profil</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    Supprimer mon compte
+                </button>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Commandes</h5>
+                    <p class="card-text text-muted">
+                        {% if user.orders|length > 0 %}
+                            Vous avez <strong>{{ user.orders|length }}</strong> commande(s).
+                        {% else %}
+                            Aucune commande pour le moment.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmation de suppression -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteModalLabel">Confirmer la suppression du compte</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-danger"><strong>Attention !</strong> Cette action est irréversible.</p>
+                <p>Êtes-vous certain de vouloir supprimer votre compte ? Toutes vos données seront définitivement supprimées.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <form method="POST" action="{{ path('app_profile_delete') }}" style="display: inline;">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                    <button type="submit" class="btn btn-danger">Supprimer mon compte</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
