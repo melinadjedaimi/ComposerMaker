@@ -1,0 +1,76 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Contact - Melya{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="mb-4">Formulaire de Contact</h1>
+            
+            {% if app.flashes('success') %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {% for message in app.flashes('success') %}
+                        {{ message }}
+                    {% endfor %}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+
+            <p class="text-muted mb-4">Vous avez une question ou souhaitez nous envoyer vos commentaires ? Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.</p>
+
+            {{ form_start(form, {'attr': {'class': 'contact-form', 'novalidate': 'novalidate'}}) }}
+                <div class="mb-3">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name) }}
+                    {% if form.name.vars.errors|length > 0 %}
+                        <div class="invalid-feedback d-block">
+                            {% for error in form.name.vars.errors %}
+                                {{ error.message }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                    {% if form.email.vars.errors|length > 0 %}
+                        <div class="invalid-feedback d-block">
+                            {% for error in form.email.vars.errors %}
+                                {{ error.message }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.subject) }}
+                    {{ form_widget(form.subject) }}
+                    {% if form.subject.vars.errors|length > 0 %}
+                        <div class="invalid-feedback d-block">
+                            {% for error in form.subject.vars.errors %}
+                                {{ error.message }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.message) }}
+                    {{ form_widget(form.message) }}
+                    {% if form.message.vars.errors|length > 0 %}
+                        <div class="invalid-feedback d-block">
+                            {% for error in form.message.vars.errors %}
+                                {{ error.message }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg w-100">Envoyer le message</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
